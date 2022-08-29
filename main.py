@@ -41,7 +41,6 @@ profit = 0
 
 
 def check_water(selection):
-    print(menu[selection]["ingredients"]["water"])
     return resources["water"] >= menu[selection]["ingredients"]["water"]
 
 
@@ -51,6 +50,14 @@ def check_milk(selection):
 
 def check_coffee(selection):
     return resources["coffee"] >= menu[selection]["ingredients"]["coffee"]
+
+
+def print_report():
+    global resources
+    global profit
+    for resource in resources:
+        print(resource + " " + str(resources[resource]))
+    print(profit)
 
 
 def make_drink(selection):
@@ -90,15 +97,16 @@ def check_resources(selection):
 
 
 def main():
-    profit = 0
     # Use a breakpoint in the code line below to debug your script.
-    selection = input('What would you like? (espresso/latte/cappuccino:')
-    if selection == 'off':
-        exit()
-    elif selection == 'report':
-        print_report()
-    elif selection == 'espresso' or selection == 'latte' or selection == 'cappuccino':
-        check_resources(selection)
+    more_commands = True
+    while more_commands:
+        selection = input('What would you like? (espresso/latte/cappuccino:')
+        if selection == 'off':
+            exit()
+        elif selection == 'report':
+            print_report()
+        elif selection == 'espresso' or selection == 'latte' or selection == 'cappuccino':
+            check_resources(selection)
 
 
 # Press the green button in the gutter to run the script.
